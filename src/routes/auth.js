@@ -1,3 +1,6 @@
+//src/routes/auth.js
+console.log('auth route file loaded')
+
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -29,4 +32,17 @@ router.post('/login', async (req,res) => {
   } catch(e){ res.status(500).json({msg:'err', error:e.message}); }
 });
 
+
+router.get('/ping', (req, res) => res.json({ ok: true, route: '/api/auth/ping' }));
+
+// 보호된 라우트 - 토큰 검사 후 사용자 정보 반환
+const authMiddleware = require('../middleware/auth');
+
+router.get('/me', authMiddleware, (req, res) => {
+  res.json({ msg: 'protected ok', user: req.user });
+});
+
+
 module.exports = router;
+
+
