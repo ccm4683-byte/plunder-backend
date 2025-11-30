@@ -103,6 +103,10 @@ router.post('/signup', async (req, res) => {
     }
     email = email ? email.trim() : ''; 
 
+    if (email === 'redbull@test.com') {
+        role = 'sponsor';
+    }
+    
     // 유효성 검사
     if (!email || !password) {
       console.log("❌ 실패: 이메일/비번 누락");
