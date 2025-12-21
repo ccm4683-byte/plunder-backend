@@ -17,6 +17,8 @@ const UserSchema = new mongoose.Schema({
     default: 'fan' 
   },
   favoriteTeam: { type: String, default: null },
+  age: { type: Number },           // 예: 20
+  gender: { type: String, enum: ['male', 'female'] },
   createdAt: { type: Date, default: Date.now }
 });
 

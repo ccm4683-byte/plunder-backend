@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String }, // ✅ [추가됨] 이게 있어야 설명이 저장됩니다!
-  category: { type: String },
+  tags: { type: [String], default: [] },
   imageUrl: { type: String },
   status: { 
     type: String, 
