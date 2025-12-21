@@ -289,4 +289,18 @@ router.get('/stats/analytics', async (req, res) => {
   }
 });
 
+router.get('/reset-db-dangerous', async (req, res) => {
+  try {
+    // 1. 상품 다 지우기
+    await Product.deleteMany({});
+    
+    // 2. 유저 다 지우기 (스폰서, 팬 전부)
+    await User.deleteMany({});
+
+    res.send("<h1>⚠️ 초기화 완료!</h1><p>모든 상품과 유저 데이터가 삭제되었습니다. 다시 가입하세요.</p>");
+  } catch (err) {
+    res.status(500).send("초기화 실패: " + err.message);
+  }
+});
+
 module.exports = router;
