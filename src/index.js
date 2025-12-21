@@ -14,7 +14,10 @@ const app = express();
 
 // CORS 설정
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173',
+  'http://localhost:4000', // 로컬 테스트용
+  'https://plunder-frontend-vj9v-56kgfpcq8-ccm4683s-projects.vercel.app'
+  ],
   credentials: true,
 }));
 
